@@ -52,3 +52,6 @@ Does wireless need its own?  APs specifically?
 - **Edges** connect a cabling run to one or more termination points, accommodating flexibility (e.g., MPO trunks or split runs).
 - **Connector types** and **housing types** are standardized through dropdowns to avoid inconsistency.
 - Optional attributes (like `innerduct`) allow capturing pathway metadata without requiring it.
+
+
+Racks and Power are next
