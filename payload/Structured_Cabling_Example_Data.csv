@@ -1,0 +1,7 @@
+,label,location,type,connector_type,cable_id,media_type,cable_type,max_length_meters,actual_length_meters,innerduct
+0,PP-01-A1,MDF Rack 1,patch_panel,rj45,CBL001,copper,cat6,100,45,"Blue conduit, ceiling mounted"
+1,WO-101-A,Room 101 Wall Outlet,wall_outlet,rj45,CBL001,copper,cat6,100,45,"Blue conduit, ceiling mounted"
+2,PP-02-F1,MDF Fiber Shelf,patch_panel,lc,CBL002,fiber,om3,300,120,Innerduct tray
+3,WO-202-F,Room 202 Ceiling AP Drop,device_port,lc,CBL002,fiber,om3,300,120,Innerduct tray
+4,PP-03-A3,IDF Rack 3,patch_panel,rj45,CBL003,copper,cat6a,100,60,Standard ceiling tray
+5,WO-103-A,Room 103 Wall Outlet,wall_outlet,rj45,CBL003,copper,cat6a,100,60,Standard ceiling tray

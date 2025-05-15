@@ -1,0 +1,10 @@
+[project]
+name = "infrahub-ac3-schema"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "infrahub-sdk>=1.12.1",
+    "requests>=2.32.3",
+]
