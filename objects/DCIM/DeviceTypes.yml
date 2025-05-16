@@ -1,0 +1,24 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: DcimDeviceType
+  data:
+    - name: MX204
+      description: Juniper MX204
+      manufacturer: Juniper
+      platform: JunOS
+      height: 1
+      full_depth: false
+    - name: CCS-720DP-48S-2F
+      description: Arista CCS-720DP-48S-2F
+      manufacturer: Arista
+      platform: EOS
+      height: 1
+      full_depth: false
+    - name: S600E
+      description: Nokia S600E
+      manufacturer: Nokia
+      platform: SR-OS
+      height: 1
+      full_depth: false

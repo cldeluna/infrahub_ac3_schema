@@ -1,0 +1,15 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: OrganizationProvider
+  data:
+  # DC
+  - name: Zenlayer
+  - name: TTC Teleport
+  - name: Equinix
+  - name: Digital Realty
+  # Telecom
+  - name: CenturyLink
+  - name: Arelion
+  - name: AT&T

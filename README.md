@@ -1,20 +1,32 @@
-# InfraHub Wish List 
+# InfraHub Wish List
 
 New strategy - tactical for AC3
 
 Use IHUB as data source only.  Forget about developing and or loading schemas.  As a run of the mill network engineer, I should expect the data to be there in a fully functional and operational server that has been stood up by SAs, DBAs, Software Developers.
 
-## Priority 1
+## Load Schema & Menus
 
-1. Leveraging the current base (dcim, ipam, location, organization) would love to add
-- person (could leverage base:location) 
-    part of organization?? or its own table?? tied to base:organization??
-- appliance  (could leverage base: manufacturer)
-- structured_cabling (built by ChatGPT..Im not holding my breath leverages base:manufacturer, location)
+```bash
+infrahubctl schema load schemas/**/*.yml
+infrahubctl menu load menus/base_menu.yml
+```
 
-Updates: location needs more campus like data, Buildings, Floors, closets
+## Load Bootstrap Data
 
-These are not fully built out and I've added notes.
+```bash
+infrahubctl object load objects/Groups.yml
+infrahubctl object load objects/Organizations/**
+
+infrahubctl object load objects/Locations/Countries.yml
+infrahubctl object load objects/Locations/Sites.yml
+infrahubctl object load objects/Locations/Suites_and_Racks.yml
+
+infrahubctl object load objects/DCIM/Platforms.yml
+infrahubctl object load objects/DCIM/DeviceTypes.yml
+
+infrahubctl object load objects/DCIM/Devices_and_Interfaces.yml
+
+```
 
 ## Priority 2
 
@@ -24,8 +36,6 @@ Add a new MLAG Pair prg-core1, pro-core2 (eos)
 Add an Arista template (how does IHUB handle template modularity?)
 
 Generate corresponding configuration artifacts for both switches.
-
-
 
 ## Priority 3 (unlikely for AC3 )
 
@@ -39,7 +49,6 @@ Appliances:
 - management appliances
 
 Does wireless need its own?  APs specifically?
-
 
 ### Structured Cabling
 
