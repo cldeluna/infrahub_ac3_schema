@@ -1,0 +1,48 @@
+---
+version: "1.0"
+nodes:
+  - name: Appliance
+    namespace: Campus
+    human_friendly_id: ['hostname__value']
+    attributes:
+      # - name: hostname -> name in GenericDevice
+      # - name: model -> Relation to DeviceType in PhysicalDevice
+      # - name: os_version -> GenericDevice
+      # - name: serial_number -> Serial in PhysicalDevice
+      # - name: rack -> location in PhysicalDevice (towards LocationHosting)
+      # - name: position -> position in PhysicalDevice
+
+      # Via location Hosting nodes ancestors ?
+      # - name: site
+      # - name: site_type
+      # - name: building
+      # - name: floor
+
+      # Having a custom FABRIC_ROLE object ?
+      - name: uplink_interface
+      - name: interface_behavior
+      - name: mgmt_intf
+      - name: mgmt_vlan
+
+      - name: uplink_device
+      - name: power_plug
+
+      - name: installation_planned_date #Date
+      - name: installation_actual_date #Date
+      - name: installation_notes #textarea
+
+      - name: fqdn # computed from name  +domain ?
+      - name: domain # dns domain or mlag ?
+
+      # By LocationHosting ?
+      - name: mgmt_subnet
+      - name: mgmt_sw
+      - name: valid_vlan_start
+
+
+      # Create Contact/person object ?
+      - name: smart_hands # Smart hands name
+      - name: sh_email # Smart hands email
+      - name: sh_phone # Smart hands phone
+      - name: photos_url
+

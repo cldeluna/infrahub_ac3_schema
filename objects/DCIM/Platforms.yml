@@ -1,0 +1,34 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: DcimPlatform
+  data:
+    - name: SR-OS
+      description: Nokia Service Router Operating System
+      manufacturer: Nokia
+      napalm_driver: iosxr
+      netmiko_device_type: cisco_xr
+      ansible_network_os: cisco.iosxr.iosxr
+      containerlab_os: cisco_xrv
+    - name: EOS
+      description: Arista EOS
+      manufacturer: Arista
+      napalm_driver: eos
+      netmiko_device_type: arista_eos
+      ansible_network_os: eos
+      containerlab_os: ceos
+    - name: NX-OS
+      description: Cisco NX-OS
+      manufacturer: Cisco
+      napalm_driver: nxos_ssh
+      netmiko_device_type: cisco_nxos
+      ansible_network_os: nxos
+      containerlab_os: cisco_n9kv
+    - name: JunOS
+      description: Juniper JunOS
+      manufacturer: Juniper
+      napalm_driver: junos
+      netmiko_device_type: juniper_junos
+      ansible_network_os: junos
+

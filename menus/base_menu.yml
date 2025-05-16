@@ -1,0 +1,109 @@
+# yaml-language-server: $schema=https://schema.infrahub.app/infrahub/menu/latest.json
+---
+apiVersion: infrahub.app/v1
+kind: Menu
+spec:
+  data:
+    - namespace: Organization
+      name: MainMenu
+      label: Organization
+      icon: "mdi:domain"
+      children:
+        data:
+          - namespace: Organization
+            name: Generic
+            label: All Organizations
+            kind: OrganizationGeneric
+            icon: "mdi:domain"
+          - namespace: Organization
+            name: Manufacturer
+            label: Manufacturer
+            kind: OrganizationManufacturer
+            icon: "mdi:domain"
+          - namespace: Organization
+            name: Provider
+            label: Provider
+            kind: OrganizationProvider
+            icon: "mdi:domain"
+
+          - namespace: Organization
+            name: Tenant
+            label: Tenant
+            kind: OrganizationTenant
+            icon: "ion:person-sharp"
+
+    - namespace: Location
+      name: Menu
+      label: Location
+      icon: "mingcute:location-line"
+      children:
+        data:
+          - namespace: Location
+            name: Generic
+            label: All Locations
+            kind: LocationGeneric
+            icon: "mingcute:location-line"
+          - namespace: Location
+            name: Country
+            label: Country
+            kind: LocationCountry
+            icon: "gis:search-country"
+          - namespace: Location
+            name: Site
+            label: Site
+            kind: LocationSite
+            icon: "ri:building-line"
+          - namespace: Location
+            name: Rack
+            label: Rack
+            kind: LocationRack
+            icon: clarity:rack-server-solid
+
+    - namespace: Infra
+      name: DeviceManagementMenu
+      label: Device Management
+      icon: "mdi:server"
+      children:
+        data:
+          - namespace: Infra
+            name: NetworkDeviceMenu
+            label: Network Device
+            icon: "mdi:server"
+            children:
+              data:
+                - namespace: Infra
+                  name: Device
+                  label: Device
+                  kind: DcimDevice
+                  icon: "mdi:server"
+                - name: Interface
+                  namespace: Infra
+                  label: "Interfaces"
+                  icon: "mdi:ethernet"
+                  children:
+                    data:
+                      - namespace: Infra
+                        name: Generic
+                        label: All Interfaces
+                        kind: DcimInterface
+                      - namespace: Infra
+                        name: Physical
+                        label: Physical Interfaces
+                        kind: InterfacePhysical
+                      - name: Virtual
+                        namespace: Infra
+                        label: Virtual Interfaces
+                        kind: InterfaceVirtual
+
+
+          - namespace: Infra
+            name: DeviceType
+            label: Device Type
+            kind: DcimDeviceType
+            icon: "mdi:poll"
+
+          - namespace: Infra
+            name: Platform
+            label: Platform
+            kind: DcimPlatform
+            icon: "mdi:application-cog-outline"

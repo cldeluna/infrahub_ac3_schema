@@ -1,0 +1,41 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: DcimDevice
+  data:
+    - name: prg1-core1
+      description: Core Router 1
+      role: core
+      status: active
+      platform: EOS
+      device_type: CCS-720DP-48S-2F
+      serial: ABC123
+      position: 21
+      location: prg2.r001
+      member_of_groups:
+        - core
+        - arista
+    - name: prg1-core2
+      description: Core Router 2
+      role: core
+      status: active
+      platform: EOS
+      device_type: CCS-720DP-48S-2F
+      serial: ABC124
+      position: 22
+      location: prg2.r001
+      member_of_groups:
+        - core
+        - arista
+    - name: prg1-core3
+      description: Core Router 3
+      role: core
+      status: provisioning
+      platform: JunOS
+      device_type: MX204
+      serial: KLM-123
+      location: PRG1
+      member_of_groups:
+        - core
+        - arista

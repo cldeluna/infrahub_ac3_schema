@@ -1,0 +1,67 @@
+---
+# yaml-language-server: $schema=https://schema.infrahub.app/infrahub/schema/latest.json
+version: "1.0"
+nodes:
+  - name: Person
+    namespace: Organization
+    human_friendly_id: [ 'last_name__value', 'first_name__value' ]
+    include_in_menu: false
+    icon: "ion:person-sharp"
+    attributes:
+      - name: first_name
+        label: First Name
+        kind: Text
+        description: First name
+      - name: last_name
+        label: Last Name
+        kind: Text
+        description: Last Name
+      - name: email
+        label: Email
+        kind: Email
+        description: Email
+        optional: true
+      - name: mobile
+        label: Mobile Phone Number
+        kind: Text
+        description: Mobile Phone Number Starting with + and country code
+        optional: true
+      - name: remote_worker
+        label: Remote Worker
+        kind: Boolean
+        default_value: false
+    relationships:
+      - name: organization
+        peer: OrganizationGeneric
+        identifier: organization__persons
+        optional: false
+        cardinality: one
+        kind: Parent
+      - name: default_location
+        peer: LocationGeneric
+        identifier: person__default_location
+        optional: true
+        cardinality: one
+        kind: Attribute
+
+extensions:
+  nodes:
+    # Organization Extensions
+    - kind: OrganizationGeneric
+      relationships:
+        - name: persons
+          kind: Component
+          peer: OrganizationPerson
+          identifier: organization__persons
+          description: "List of Persons under this organization"
+          cardinality: many
+
+    # Location Extensions
+    - kind: LocationGeneric
+      relationships:
+        - name: persons
+          kind: Component
+          peer: OrganizationPerson
+          identifier: person__default_location
+          description: "List of Persons with this location as default"
+          cardinality: many

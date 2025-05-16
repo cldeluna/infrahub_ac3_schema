@@ -1,0 +1,38 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: CoreStandardGroup
+  data:
+    # Locations
+    - name: datacenters
+      description: Data Centers
+    - name: campus
+      description: Campus Offices
+    - name: branch
+      description: Branch Offices
+    # Device Platform/Manufacturer
+    - name: arista
+      description: Arista Devices
+    - name: cisco
+      description: Cisco Devices
+    - name: juniper
+      description: Juniper Devices
+    - name: nokia
+      description: Nokia Devices
+    # Device Role
+    - name: core
+      description: Core Devices
+    - name: aggregation
+      description: Aggregation Devices
+    - name: access
+      description: Access Devices
+    - name: management
+      description: Management Devices
+    # Interface Role
+    - name: backbone
+      description: Backbone Interfaces
+    - name: upstream
+      description: Upstream Interfaces
+    - name: peering
+      description: Peering Interfaces

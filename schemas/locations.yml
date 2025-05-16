@@ -1,0 +1,172 @@
+---
+# yaml-language-server: $schema=https://schema.infrahub.app/infrahub/schema/latest.json
+version: "1.0"
+
+nodes:
+  - name: Country #LocationCountry
+    namespace: Location
+    label: Country
+    include_in_menu: false
+    inherit_from:
+      - LocationGeneric
+    menu_placement: LocationGeneric
+    uniqueness_constraints:
+      - ["name__value"]
+    human_friendly_id:
+      - name__value
+    parent: ""
+    children: LocationSite
+    icon: gis:search-country
+
+  - name: Site #LocationSite
+    namespace: Location
+    label: Site
+    include_in_menu: false
+    inherit_from:
+      - LocationGeneric
+    menu_placement: LocationGeneric
+    parent: LocationCountry
+    children: LocationSuite
+    icon: ri:building-line
+    uniqueness_constraints:
+      - ["shortname__value"]
+    human_friendly_id:
+      - shortname__value
+    display_labels:
+      - shortname__value
+      - name__value
+    attributes:
+      - name: facility_id
+        kind: Text
+        optional: true
+        order_weight: 1150
+      - name: gps_coordinates
+        label: GPS Coordinates
+        kind: Text
+        optional: true
+        order_weight: 1400
+      - name: physical_address
+        kind: Text
+        optional: true
+        order_weight: 1500
+      - name: status
+        kind: Dropdown
+        choices:
+          - name: provisioning
+            label: Provisioning
+            description: "Site is being provisioned."
+            color: "#A9DFBF"  # light pastel green
+          - name: active
+            label: Active
+            description: "Site is active and operational."
+            color: "#A9CCE3"  # pastel blue
+          - name: maintenance
+            label: Maintenance
+            description: "Site is under maintenance."
+            color: "#FFF2CC"  # pastel yellow
+          - name: decommissioned
+            label: Decommissioned
+            description: "Site has been decommissioned."
+            color: "#D3D3D3"  # light grey
+        order_weight: 1200
+        default_value: active
+      - name: site_type
+        kind: Dropdown
+        choices:
+          - name: dc
+            label: DC
+            description: "Datacenter"
+            color: "#E6E6FA"  # lavender
+          - name: campus
+            label: Campus
+            description: "Campus"
+            color: "#E6E6FA"  # lavender
+          - name: branch
+            label: Branch
+            color: "#E6E6FA"  # lavender
+        order_weight: 1300
+        default_value: dc
+    relationships:
+      - name: provider
+        peer: OrganizationProvider
+        optional: true
+        cardinality: one
+
+  - name: Suite #LocationSuite
+    namespace: Location
+    include_in_menu: false
+    inherit_from:
+      - LocationGeneric
+    menu_placement: LocationGeneric
+    label: Suite & Technical Room
+    parent: "LocationSite"
+    children: "LocationRack"
+    icon: "game-icons:cage"
+    uniqueness_constraints:
+      - ["shortname__value"]
+    human_friendly_id:
+      - shortname__value
+    display_labels:
+      - shortname__value
+    attributes:
+      - name: name
+        kind: Text
+        order_weight: 1000
+        inherited: true
+      - name: floor
+        label: Floor
+        description: "Floor of the suite"
+        kind: Text
+        optional: true
+        order_weight: 1100
+      - name: facility_id
+        kind: Text
+        optional: true
+        order_weight: 1150
+
+  - name: Rack #LocationRack
+    namespace: Location
+    label: Rack
+    include_in_menu: false
+    inherit_from:
+      - LocationGeneric
+    menu_placement: LocationGeneric
+    parent: LocationSuite
+    icon: clarity:rack-server-line
+    uniqueness_constraints:
+      - ["facility_id__value"]
+    human_friendly_id:
+      - facility_id__value
+    display_labels:
+      - name__value
+      - facility_id__value
+    attributes:
+      - name: name
+        kind: Text
+        order_weight: 1000
+        inherited: true
+      - name: facility_id
+        kind: Text
+        optional: true
+        order_weight: 1150
+      - name: height
+        label: Height (U)
+        optional: false
+        default_value: 48
+        kind: Number
+        order_weight: 1300
+    relationships:
+      - name: provider
+        peer: OrganizationProvider
+        optional: true
+        cardinality: one
+        kind: Attribute
+
+extensions:
+  nodes:
+    - kind: OrganizationProvider
+      relationships:
+        - name: sites
+          peer: LocationSite
+          cardinality: many
+          optional: true
