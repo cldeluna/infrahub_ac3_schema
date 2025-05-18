@@ -30,7 +30,7 @@ topology:
 {%  endif %}
 {% endfor %}
 
-  links:
+  {# links:
 {% set processed_endpoints = [] %}
 {% for device in data.DcimDevice.edges %}
   {% for interface in device.node.interfaces.edges %}
@@ -49,7 +49,7 @@ topology:
       {% endif %}
     {% endif %}
   {% endfor %}
-{% endfor %}
+{% endfor %} #}
 
 mgmt:
   network: ceos_clab
