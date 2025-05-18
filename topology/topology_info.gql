@@ -35,6 +35,12 @@ query topology_info {
                           node {
                             id
                             hfid
+                            ... on DcimInterface {
+                              id
+                              name {
+                                value
+                              }
+                            }
                           }
                         }
                       }

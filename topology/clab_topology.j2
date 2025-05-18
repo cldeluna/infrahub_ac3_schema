@@ -34,16 +34,17 @@ topology:
 {% set processed_endpoints = [] %}
 {% for device in data.DcimDevice.edges %}
   {% for interface in device.node.interfaces.edges %}
-    {% set connected_endpoint = interface.node.connected_endpoint.node %}
-    {% if connected_endpoint is not none %}
-      {% set endpoint1 = device.node.name.value + ":" + interface.node.name.value %}
-      {% set endpoint2 = connected_endpoint.device.node.name.value + ":" + connected_endpoint.name.value %}
-      {% set endpoint_tuple = [endpoint1, endpoint2] | sort %}
-      {% set endpoint_key = endpoint_tuple | join("|") %}
-      {% if endpoint_key not in processed_endpoints %}
-        {% set _ = processed_endpoints.append(endpoint_key) %}
-        {% set endpoint1 = endpoint1.replace("Ethernet", "eth") %}
-        {% set endpoint2 = endpoint2.replace("Ethernet", "eth") %}
+    {% for link_devices in interface.node.connector.node.connected_endpoints.edges %}
+      {% if link_devices is not none %}
+        {% set connected_endpoint = interface.node.connector.node.connected_endpoints.node %}
+        {% set endpoint1 = device.node.name.value + ":" + interface.node.name.value %}
+        {% set endpoint2 = connected_endpoint.device.node.hfid %}
+        {% set endpoint_tuple = [endpoint1, endpoint2] | sort %}
+        {% set endpoint_key = endpoint_tuple | join("|") %}
+        {% if endpoint_key not in processed_endpoints %}
+          {% set _ = processed_endpoints.append(endpoint_key) %}
+          {% set endpoint1 = endpoint1.replace("Ethernet", "eth") %}
+          {% set endpoint2 = endpoint2.replace("Ethernet", "eth") %}
     - endpoints: ["{{ endpoint1 }}", "{{ endpoint2 }}"]
       {% endif %}
     {% endif %}
