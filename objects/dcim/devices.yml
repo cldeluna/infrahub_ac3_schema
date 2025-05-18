@@ -28,14 +28,14 @@ spec:
       member_of_groups:
         - core
         - arista
-    - name: prg1-core3
-      description: Core Router 3
-      role: core
-      status: provisioning
-      platform: JunOS
-      device_type: MX204
-      serial: KLM-123
-      location: PRG1
-      member_of_groups:
-        - core
-        - juniper
+    # - name: prg1-core3
+    #   description: Core Router 3
+    #   role: core
+    #   status: provisioning
+    #   platform: JunOS
+    #   device_type: MX204
+    #   serial: KLM-123
+    #   location: PRG1
+    #   member_of_groups:
+    #     - core
+    #     - juniper
