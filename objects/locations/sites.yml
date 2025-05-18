@@ -1,0 +1,49 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: LocationSite
+  data:
+  - name: denver1
+    shortname: DEN1
+    facility_id: EQX-DEN1
+    provider: Equinix
+    parent: United States of America
+    member_of_groups:
+      - datacenters
+  - name: denver2
+    shortname: DEN2
+    facility_id: DG-DEN2
+    provider: Digital Realty
+    parent: United States of America
+    member_of_groups:
+      - datacenters
+  - name: amsterdam1
+    shortname: AMS1
+    facility_id: DG-AMS1
+    provider: Digital Realty
+    parent: Netherlands
+    member_of_groups:
+      - datacenters
+  - name: amsterdam2
+    shortname: AMS2
+    facility_id: EQX-AMS2
+    provider: Equinix
+    parent: Netherlands
+    member_of_groups:
+      - datacenters
+  - name: praha1
+    shortname: PRG1
+    facility_id: ZEN-PRG1
+    provider: Zenlayer
+    parent: Czech Republic
+    member_of_groups:
+      - datacenters
+  - name: praha2
+    shortname: PRG2
+    facility_id: TTC-PRG2
+    parent: Czech Republic
+    status: provisioning
+    provider: TTC Teleport
+    member_of_groups:
+      - datacenters
