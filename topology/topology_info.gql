@@ -1,5 +1,5 @@
 query topology_info($topology_name: String!) {
-  InfraDevice(topology__name__value: $topology_name) {
+  DcimDevice(topology__name__value: $topology_name) {
     edges {
       node {
         name {

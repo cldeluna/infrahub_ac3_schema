@@ -52,7 +52,7 @@ def load_data(context: Context) -> None:
 
     context.run("infrahubctl object load objects/dcim/devices.yml")
     context.run("infrahubctl object load objects/dcim/interfaces.yml")
-    context.run("infrahubctl object load objects/dcim/cables.yml")
+    # context.run("infrahubctl object load objects/dcim/cables.yml")
 
 @task
 def destroy(context: Context) -> None:

@@ -1,17 +1,10 @@
 query device_info($device: String!) {
-  InfraDevice(name__value: $device) {
+  DcimDevice(name__value: $device) {
     edges {
       node {
         id
         name {
           value
-        }
-        asn {
-          node {
-            asn {
-              value
-            }
-          }
         }
         primary_address {
           node {
@@ -20,98 +13,11 @@ query device_info($device: String!) {
             }
           }
         }
-        topology {
-          node {
-            name {
-              value
-            }
-            network_services {
-              edges {
-                node {
-                  __typename
-                  name {
-                    value
-                  }
-                  ... on TopologyLayer2NetworkService {
-                    vlan {
-                      node {
-                        name {
-                          value
-                        }
-                        role {
-                          value
-                        }
-                        vlan_id {
-                          value
-                        }
-                      }
-                    }
-                  }
-                  ... on TopologyLayer3NetworkService {
-                    vlan {
-                      node {
-                        name {
-                          value
-                        }
-                        role {
-                          value
-                        }
-                        vlan_id {
-                          value
-                        }
-                      }
-                    }
-                    prefix {
-                      node {
-                        role {
-                          value
-                        }
-                        prefix {
-                          value
-                        }
-                        vrf {
-                          node {
-                            ... on InfraVRF {
-                              vrf_rd {
-                                value
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          }
-        }
         location {
           node {
             id
             name {
               value
-            }
-            timezone {
-              value
-            }
-            ... on LocationBuilding {
-              ancestors {
-                edges {
-                  node {
-                    network_management_servers {
-                      edges {
-                        node {
-                          __typename
-                          name {
-                            value
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
             }
           }
         }
@@ -126,40 +32,18 @@ query device_info($device: String!) {
               description {
                 value
               }
-              enabled {
-                value
-              }
               role {
                 value
               }
               mtu {
                 value
               }
-              ... on InfraInterfaceL2 {
-                tagged_vlan {
-                  edges {
-                    node {
-                      vlan_id {
-                        value
-                      }
-                      name {
-                        value
-                      }
-                    }
-                  }
-                }
-                untagged_vlan {
-                  node {
-                    vlan_id {
-                      value
-                    }
-                    name {
-                      value
-                    }
-                  }
+              ... on InterfaceLayer2 {
+                l2_mode {
+                  value
                 }
               }
-              ... on InfraInterfaceL3 {
+              ... on InterfaceLayer3 {
                 ip_addresses {
                   edges {
                     node {
@@ -178,33 +62,6 @@ query device_info($device: String!) {
                   }
                 }
               }
-            }
-          }
-        }
-      }
-    }
-  }
-  InfraVRF {
-    edges {
-      node {
-        id
-        name {
-          value
-        }
-        vrf_rd {
-          value
-        }
-        import_rt {
-          node {
-            name {
-              value
-            }
-          }
-        }
-        export_rt {
-          node {
-            name {
-              value
             }
           }
         }

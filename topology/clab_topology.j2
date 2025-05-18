@@ -11,7 +11,7 @@ topology:
     linux:
       image: "${LINUX_HOST_DOCKER_IMAGE}"
   nodes:
-{% for device in data.InfraDevice.edges %}
+{% for device in data.DcimDevice.edges %}
 {% set networkos = device.node.device_type.node.platform.node.containerlab_os.value %}
     {{ device.node.name.value }}:
       kind: {{ networkos }}
@@ -32,7 +32,7 @@ topology:
 
   links:
 {% set processed_endpoints = [] %}
-{% for device in data.InfraDevice.edges %}
+{% for device in data.DcimDevice.edges %}
   {% for interface in device.node.interfaces.edges %}
     {% set connected_endpoint = interface.node.connected_endpoint.node %}
     {% if connected_endpoint is not none %}
