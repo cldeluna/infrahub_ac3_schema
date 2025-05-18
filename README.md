@@ -27,7 +27,7 @@ uv run invoke load-data
 ```graphql
 mutation AddRepository {
   CoreReadOnlyRepositoryCreate(
-    data: {name: {value: "ac3"}, location: {value: "https://github.com/BeArchiTek/infrahub_ac3_schema.git"}, ref: {value: "ac3-help"}}
+    data: {name: {value: "ac3"}, location: {value: "https://github.com/BeArchiTek/infrahub_ac3_schema.git"}}
   ) {
     ok
     object {

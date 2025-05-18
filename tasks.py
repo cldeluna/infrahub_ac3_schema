@@ -50,8 +50,13 @@ def load_data(context: Context) -> None:
     context.run("infrahubctl object load objects/dcim/platforms.yml")
     context.run("infrahubctl object load objects/dcim/device_types.yml")
 
+    context.run("infrahubctl object load objects/dcim/ip_prefixes.yml")
+    context.run("infrahubctl object load objects/dcim/interface_ips.yml")
+
     context.run("infrahubctl object load objects/dcim/devices.yml")
     context.run("infrahubctl object load objects/dcim/interfaces.yml")
+
+
     # context.run("infrahubctl object load objects/dcim/cables.yml")
 
 @task
