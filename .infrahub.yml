@@ -23,7 +23,7 @@ artifact_definitions:
     parameters:
       topology_name: "name__value"
     content_type: "text/plain"
-    targets: "all_topologies"
+    targets: "arista"
     transformation: "clab_topology"
 
 queries:

@@ -22,6 +22,21 @@ uv run invoke load-schema
 uv run invoke load-data
 ```
 
+## Load Transformations from git repo
+
+```graphql
+mutation AddRepository {
+  CoreReadOnlyRepositoryCreate(
+    data: {name: {value: "ac3"}, location: {value: "https://github.com/BeArchiTek/infrahub_ac3_schema.git"}, ref: {value: "ac3-help"}}
+  ) {
+    ok
+    object {
+      id
+    }
+  }
+}
+```
+
 ## Priority 2
 
 Figure out how to create an artifact 100% within infrahub.
