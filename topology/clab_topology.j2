@@ -34,20 +34,22 @@ topology:
 {% set processed_endpoints = [] %}
 {% for device in data.DcimDevice.edges %}
   {% for interface in device.node.interfaces.edges %}
-    {% for link_device in interface.node.connector.node.connected_endpoints.edges %}
-      {% if link_device is not none and link_device.node.hfid[0] != device.node.name.value %}
-            {% set endpoint1 = device.node.name.value + ":" + interface.node.name.value %}
-            {% set endpoint2 = link_device.node.hfid[0] + ":" +  link_device.node.hfid[1] %}
-            {% set endpoint_tuple = [endpoint1, endpoint2] | sort %}
-            {% set endpoint_key = endpoint_tuple | join("|") %}
-            {% if endpoint_key not in processed_endpoints %}
-              {% set _ = processed_endpoints.append(endpoint_key) %}
-              {% set endpoint1 = endpoint1.replace("Ethernet", "eth") %}
-              {% set endpoint2 = endpoint2.replace("Ethernet", "eth") %}
-        - endpoints: ["{{ endpoint1 }}", "{{ endpoint2 }}"]
-            {% endif %}
-      {% endif %}
-    {% endfor %}
+    {% if interface.node.connector.node is not none %}
+      {% for link_device in interface.node.connector.node.connected_endpoints.edges %}
+        {% if link_device is not none and link_device.node.hfid[0] != device.node.name.value %}
+              {% set endpoint1 = device.node.name.value + ":" + interface.node.name.value %}
+              {% set endpoint2 = link_device.node.hfid[0] + ":" +  link_device.node.hfid[1] %}
+              {% set endpoint_tuple = [endpoint1, endpoint2] | sort %}
+              {% set endpoint_key = endpoint_tuple | join("|") %}
+              {% if endpoint_key not in processed_endpoints %}
+                {% set _ = processed_endpoints.append(endpoint_key) %}
+                {% set endpoint1 = endpoint1.replace("Ethernet", "eth") %}
+                {% set endpoint2 = endpoint2.replace("Ethernet", "eth") %}
+          - endpoints: ["{{ endpoint1 }}", "{{ endpoint2 }}"]
+              {% endif %}
+        {% endif %}
+      {% endfor %}
+    {% endif %}
   {% endfor %}
 {% endfor %}
 
