@@ -4,30 +4,22 @@ New strategy - tactical for AC3
 
 Use Infrahub as data source only.  Forget about developing and or loading schemas.  As a run of the mill network engineer, I should expect the data to be there in a fully functional and operational server that has been stood up by SAs, DBAs, Software Developers.
 
+## Start Infrahub & SuzieQ
+
+```bash
+uv run invoke start
+```
+
 ## Load Schema & Menus
 
 ```bash
-uv run infrahubctl schema load schemas/**/*.yml
-uv run infrahubctl menu load menus/base_menu.yml
+uv run invoke load-schema
 ```
 
 ## Load Bootstrap Data
 
 ```bash
-uv run infrahubctl object load objects/Groups.yml
-uv run infrahubctl object load objects/Organizations/**
-
-uv run infrahubctl object load objects/Locations/Countries.yml
-uv run infrahubctl object load objects/Locations/Sites.yml
-uv run infrahubctl object load objects/Locations/Suites.yml
-uv run infrahubctl object load objects/Locations/Racks.yml
-
-uv run infrahubctl object load objects/DCIM/Platforms.yml
-uv run infrahubctl object load objects/DCIM/DeviceTypes.yml
-
-uv run infrahubctl object load objects/DCIM/Devices.yml
-uv run infrahubctl object load objects/DCIM/Interfaces.yml
-uv run infrahubctl object load objects/DCIM/Cables.yml
+uv run invoke load-data
 ```
 
 ## Priority 2

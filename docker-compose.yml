@@ -301,64 +301,64 @@ services:
       PREFECT_API_URL: http://${INFRAHUB_WORKFLOW_ADDRESS:-task-manager}:${INFRAHUB_WORKFLOW_PORT:-4200}/api
     tty: true
 
-  suzieq_poller:  # Define the Suzieq Poller service
-    <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
-    container_name: suzieq_poller  # Name the container suzieq_poller
-    command: -I /home/suzieq/inventory.yml -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the poller with inventory and config files
-    # env_file:
-      # - .env  # Load environment variables from the .env file
-    user: 1000:1000  # Run the container with user ID 1000
-    volumes:
-      - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
-      - "./suzieq/inventory.yml:/home/suzieq/inventory.yml"  # Mount the inventory file
-      - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
-      - "./requirements.txt:/home/suzieq/requirements.txt"  # Mount the requirements file
-    entrypoint:
-      - sq-poller  # Use sq-poller as the entrypoint
+  # suzieq_poller:  # Define the Suzieq Poller service
+  #   <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
+  #   container_name: suzieq_poller  # Name the container suzieq_poller
+  #   command: -I /home/suzieq/inventory.yml -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the poller with inventory and config files
+  #   # env_file:
+  #     # - .env  # Load environment variables from the .env file
+  #   user: 1000:1000  # Run the container with user ID 1000
+  #   volumes:
+  #     - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
+  #     - "./suzieq/inventory.yml:/home/suzieq/inventory.yml"  # Mount the inventory file
+  #     - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
+  #     - "./requirements.txt:/home/suzieq/requirements.txt"  # Mount the requirements file
+  #   entrypoint:
+  #     - sq-poller  # Use sq-poller as the entrypoint
 
-  suzieq_rest:  # Define the Suzieq REST API service
-    <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
-    container_name: suzieq_rest  # Name the container suzieq_rest
-    command: -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the REST API with the config file
-    depends_on:
-      - suzieq_poller  # Ensure suzieq_poller starts before this service
-    environment:
-      - FORWARDED_ALLOW_IPS=*  # Allow all forwarded IPs
-    ports:
-      - "8080:8080"  # Expose port 8080
-    user: 1000:1000  # Run the container with user ID 1000
-    volumes:
-      - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
-      - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
-    entrypoint: "sq-rest-server"  # Use sq-rest-server as the entrypoint
+  # suzieq_rest:  # Define the Suzieq REST API service
+  #   <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
+  #   container_name: suzieq_rest  # Name the container suzieq_rest
+  #   command: -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the REST API with the config file
+  #   depends_on:
+  #     - suzieq_poller  # Ensure suzieq_poller starts before this service
+  #   environment:
+  #     - FORWARDED_ALLOW_IPS=*  # Allow all forwarded IPs
+  #   ports:
+  #     - "8080:8080"  # Expose port 8080
+  #   user: 1000:1000  # Run the container with user ID 1000
+  #   volumes:
+  #     - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
+  #     - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
+  #   entrypoint: "sq-rest-server"  # Use sq-rest-server as the entrypoint
 
-  suzieq_gui:  # Define the Suzieq GUI service
-    <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
-    container_name: suzieq_gui  # Name the container suzieq_gui
-    command: -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the GUI with the config file
-    depends_on:
-      - suzieq_poller  # Ensure suzieq_poller starts before this service
-    ports:
-      - "8501:8501"  # Expose port 8501
-    user: 1000:1000  # Run the container with user ID 1000
-    volumes:
-      - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
-      - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
-    entrypoint:
-      - suzieq-gui  # Use suzieq-gui as the entrypoint
+  # suzieq_gui:  # Define the Suzieq GUI service
+  #   <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
+  #   container_name: suzieq_gui  # Name the container suzieq_gui
+  #   command: -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the GUI with the config file
+  #   depends_on:
+  #     - suzieq_poller  # Ensure suzieq_poller starts before this service
+  #   ports:
+  #     - "8501:8501"  # Expose port 8501
+  #   user: 1000:1000  # Run the container with user ID 1000
+  #   volumes:
+  #     - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
+  #     - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
+  #   entrypoint:
+  #     - suzieq-gui  # Use suzieq-gui as the entrypoint
 
-  suzieq_cli:  # Define the Suzieq CLI service
-    <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
-    container_name: suzieq_cli  # Name the container suzieq_cli
-    command: -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the CLI with the config file
-    depends_on:
-      - suzieq_poller  # Ensure suzieq_poller starts before this service
-    user: 1000:1000  # Run the container with user ID 1000
-    volumes:
-      - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
-      - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
-    entrypoint:
-      - suzieq-cli  # Use suzieq-cli as the entrypoint
+  # suzieq_cli:  # Define the Suzieq CLI service
+  #   <<: *suzieq_service  # Inherit the configuration from x-suzieq_service
+  #   container_name: suzieq_cli  # Name the container suzieq_cli
+  #   command: -c /home/suzieq/.suzieq/suzieq-cfg.yml  # Command to run the CLI with the config file
+  #   depends_on:
+  #     - suzieq_poller  # Ensure suzieq_poller starts before this service
+  #   user: 1000:1000  # Run the container with user ID 1000
+  #   volumes:
+  #     - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
+  #     - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
+  #   entrypoint:
+  #     - suzieq-cli  # Use suzieq-cli as the entrypoint
 
 
 volumes:
