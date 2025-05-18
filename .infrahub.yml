@@ -1,0 +1,34 @@
+---
+jinja2_transforms:
+  - name: "device_arista"
+    description: "Template to generate startup configuration for Arista devices"
+    query: "device_info"
+    template_path: "templates/device_arista_config.tpl.j2"
+
+  - name: "clab_topology"
+    query: "topology_info"
+    template_path: "topology/clab_topology.j2"
+
+artifact_definitions:
+  - name: "Startup Config for Arista devices"
+    artifact_name: "startup-config"
+    parameters:
+      device: "name__value"
+    content_type: "text/plain"
+    targets: "arista"
+    transformation: "device_arista"
+
+  - name: "Containerlab Topology"
+    artifact_name: "containerlab-topology"
+    parameters:
+      topology_name: "name__value"
+    content_type: "text/plain"
+    targets: "all_topologies"
+    transformation: "clab_topology"
+
+queries:
+  - name: "topology_info"
+    file_path: "topology/topology_info.gql"
+
+  - name: "device_info"
+    file_path: "templates/device_info.gql"

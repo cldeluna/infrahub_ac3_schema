@@ -1,0 +1,64 @@
+query topology_info($topology_name: String!) {
+  InfraDevice(topology__name__value: $topology_name) {
+    edges {
+      node {
+        name {
+          value
+        }
+        interfaces {
+          edges {
+            node {
+              name {
+                value
+              }
+              role {
+                value
+              }
+              ... on InfraInterfaceL3 {
+                ip_addresses {
+                  edges {
+                    node {
+                      address {
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+              ... on InfraEndpoint {
+                connected_endpoint {
+                  node {
+                    id
+                    ... on InfraInterface {
+                      name {
+                        value
+                      }
+                      device {
+                        node {
+                          name {
+                            value
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        device_type {
+          node {
+            platform {
+              node {
+                containerlab_os {
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

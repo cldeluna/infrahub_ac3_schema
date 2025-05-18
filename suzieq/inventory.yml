@@ -1,0 +1,21 @@
+devices:
+    - name: devices-ignoring-known-hosts
+      ignore-known-hosts: true
+
+sources:
+    - name: test-devices
+      hosts:
+        - url: ssh://10.10.20.10
+        - url: ssh://10.10.20.11
+        - url: ssh://10.10.20.12
+
+auths:
+  - name: logincreds
+    username: admin
+    password: admin
+
+namespaces:
+  - name: testing
+    device: devices-ignoring-known-hosts
+    source: test-devices
+    auth: logincreds

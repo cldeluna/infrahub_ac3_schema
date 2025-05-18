@@ -38,4 +38,4 @@ spec:
       location: PRG1
       member_of_groups:
         - core
-        - arista
+        - juniper
