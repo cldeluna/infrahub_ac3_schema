@@ -39,12 +39,7 @@ mutation AddRepository {
 
 ## Priority 2
 
-Figure out how to create an artifact 100% within infrahub.
-
 Add a new MLAG Pair prg-core1, pro-core2 (eos)
-Add an Arista template (how does Infrahub handle template modularity?)
-
-Generate corresponding configuration artifacts for both switches.
 
 ## Priority 3 (unlikely for AC3 )
 
