@@ -22,8 +22,8 @@ async def get_device_configs():
                 artifact = await device.artifact_fetch(artifact.display_label)
                 with open(f"{config_directory_path}/{device.name.value}.cfg", "w") as file:
                     file.write(artifact)
-            if str(artifact.display_label).startswith("Containerlab Topology"):
-                artifact = device.artifact_fetch(artifact.display_label)
+            elif artifact.display_label == "containerlab-topology":
+                artifact = await device.artifact_fetch(artifact.display_label)
                 with open(f"{clab_directory_path}/topology.yml", "w") as file:
                     file.write(artifact)
 
