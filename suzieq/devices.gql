@@ -1,0 +1,48 @@
+query devices {
+  DcimDevice {
+    edges {
+      node {
+        id
+        name {
+          value
+        }
+        interfaces {
+          edges {
+            node {
+              __typename
+              id
+              name {
+                value
+              }
+              description {
+                value
+              }
+              role {
+                value
+              }
+              ... on InterfaceLayer3 {
+                ip_addresses {
+                  edges {
+                    node {
+                      ip_prefix {
+                        node {
+                          prefix {
+                            broadcast_address
+                          }
+                        }
+                      }
+                      address {
+                        value
+                        ip
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
