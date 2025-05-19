@@ -209,10 +209,6 @@ nodes:
           - name: black
             label: Black
             color: "#111111"
-      - name: label
-        kind: Text
-        optional: true
-        order_weight: 1200
       # As we can't put float in Number "forcing" length in cm
       - name: length
         label: Length (in cm)

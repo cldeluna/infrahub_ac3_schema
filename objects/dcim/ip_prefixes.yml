@@ -4,7 +4,14 @@ kind: Object
 spec:
   kind: IpamPrefix
   data:
-    - prefix: "10.0.0.0/30"
+    - prefix: "10.0.0.0/31"
+      description: eth1.prg1-core1 <-> eth1.prg1-core2
       status: active
+      role: technical
+    - prefix: "10.0.0.2/31"
+      description: eth2.prg1-core1 <-> eth2.prg1-core2
+      status: active
+      role: technical
     - prefix: "172.16.0.0/16"
       status: active
+      role: management
