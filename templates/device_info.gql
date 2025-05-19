@@ -50,6 +50,7 @@ query device_info($device: String!) {
                       ip_prefix {
                         node {
                           prefix {
+                            value
                             broadcast_address
                           }
                         }

@@ -11,10 +11,7 @@
 {%         if intf.node.ip_addresses.edges %}
 {%            set ns.management_ip = intf.node.ip_addresses.edges[0].node.address.ip %}
 {%            if intf.node.ip_addresses.edges[0].node.ip_prefix %}
-{%               set network_address = intf.node.ip_addresses.edges[0].node.ip_prefix.node.prefix.network_address %}
-{%               set octets = broadcast_address.split('.') %}
-{%               set last_octet = octets[3] | int + 1 %}
-{%               set ns.management_gw_ip = octets[0] ~ '.' ~ octets[1] ~ '.' ~ octets[2] ~ '.' ~ last_octet | string %}
+{%               set ns.management_gw_ip = intf.node.ip_addresses.edges[0].node.ip_prefix.node.prefix.value | get_first_usable %}
 {%            endif %}
 {%         endif %}
 {%      endif %}
