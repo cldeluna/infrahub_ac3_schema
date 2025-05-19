@@ -312,7 +312,7 @@ services:
       - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory
       - "./suzieq/inventory.yml:/home/suzieq/inventory.yml"  # Mount the inventory file
       - "./suzieq/suzieq-cfg.yml:/home/suzieq/.suzieq/suzieq-cfg.yml"  # Mount the config file
-      - "./requirements.txt:/home/suzieq/requirements.txt"  # Mount the requirements file
+      # - "./requirements.txt:/home/suzieq/requirements.txt"  # Mount the requirements file
     entrypoint:
       - sq-poller  # Use sq-poller as the entrypoint
 
@@ -325,7 +325,8 @@ services:
     environment:
       - FORWARDED_ALLOW_IPS=*  # Allow all forwarded IPs
     ports:
-      - "8080:8080"  # Expose port 8080
+      - "8502:8502"  # Expose port 8502
+      # - "8080:8080"  # Expose port 8080
     user: 1000:1000  # Run the container with user ID 1000
     volumes:
       - "./parquet:/home/suzieq/parquet"  # Mount the local parquet directory

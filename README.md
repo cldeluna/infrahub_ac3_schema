@@ -47,6 +47,10 @@ uv run python3 scripts/get_configs.py
 sudo -E containerlab deploy -t ./generated-configs/clab/topology.clab.yml --reconfigure
 ```
 
+## SuzieQ UI
+
+[http://localhost:8501/?page=Status&namespace=ac3](http://localhost:8501/?page=Status&namespace=ac3)
+
 ## Priority 2
 
 Add a new MLAG Pair prg-core1, pro-core2 (eos)
