@@ -1,0 +1,19 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: LocationSuite
+  data:
+  - name: denver1-01s1
+    floor: "1"
+    shortname: d1.1s1
+    parent: DEN1
+  - name: praha2-00s2
+    floor: RDC
+    shortname: prg2.s2
+    parent: PRG2
+  - name: praha2-01s3
+    floor: "1"
+    shortname: prg2.s3
+    facility_id: TTC-PRG2-S3
+    parent: PRG2

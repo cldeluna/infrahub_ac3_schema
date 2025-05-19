@@ -1,0 +1,62 @@
+query topology_info {
+  DcimDevice {
+    edges {
+      node {
+        name {
+          value
+        }
+        interfaces {
+          edges {
+            node {
+              name {
+                value
+              }
+              role {
+                value
+              }
+              ... on InterfaceLayer3 {
+                ip_addresses {
+                  edges {
+                    node {
+                      address {
+                        value
+                      }
+                    }
+                  }
+                }
+              }
+              ... on InterfacePhysical {
+                cable {
+                  node {
+                    id
+                    ... on DcimConnector {
+                      connected_endpoints {
+                        edges {
+                          node {
+                            id
+                            hfid
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        device_type {
+          node {
+            platform {
+              node {
+                containerlab_os {
+                  value
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

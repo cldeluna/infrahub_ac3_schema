@@ -1,31 +1,59 @@
-# InfraHub Wish List 
+# InfraHub Wish List
 
 New strategy - tactical for AC3
 
-Use IHUB as data source only.  Forget about developing and or loading schemas.  As a run of the mill network engineer, I should expect the data to be there in a fully functional and operational server that has been stood up by SAs, DBAs, Software Developers.
+Use Infrahub as data source only.  Forget about developing and or loading schemas.  As a run of the mill network engineer, I should expect the data to be there in a fully functional and operational server that has been stood up by SAs, DBAs, Software Developers.
 
-## Priority 1
+## Start Infrahub & SuzieQ
 
-1. Leveraging the current base (dcim, ipam, location, organization) would love to add
-- person (could leverage base:location) 
-    part of organization?? or its own table?? tied to base:organization??
-- appliance  (could leverage base: manufacturer)
-- structured_cabling (built by ChatGPT..Im not holding my breath leverages base:manufacturer, location)
+```bash
+uv run invoke start
+```
 
-Updates: location needs more campus like data, Buildings, Floors, closets
+## Load Schema & Menus
 
-These are not fully built out and I've added notes.
+```bash
+uv run invoke load-schema
+```
+
+## Load Bootstrap Data
+
+```bash
+uv run invoke load-data
+```
+
+## Load Transformations from git repo
+
+```graphql
+mutation AddRepository {
+  CoreReadOnlyRepositoryCreate(
+    data: {name: {value: "ac3"}, location: {value: "https://github.com/BeArchiTek/infrahub_ac3_schema.git"}}
+  ) {
+    ok
+    object {
+      id
+    }
+  }
+}
+```
+
+## Get device configs, containerlab topology, and suzieq inventory
+
+```bash
+# Download all artifacts automatically to ./generated-configs/
+uv run python3 scripts/get_configs.py
+
+# Start the Containerlab
+sudo -E containerlab deploy -t ./generated-configs/clab/topology.clab.yml --reconfigure
+```
+
+## SuzieQ UI
+
+[http://localhost:8501/?page=Status&namespace=ac3](http://localhost:8501/?page=Status&namespace=ac3)
 
 ## Priority 2
 
-Figure out how to create an artefact 100% within infrahub.
-
 Add a new MLAG Pair prg-core1, pro-core2 (eos)
-Add an Arista template (how does IHUB handle template modularity?)
-
-Generate corresponding configuration artifacts for both switches.
-
-
 
 ## Priority 3 (unlikely for AC3 )
 
@@ -39,7 +67,6 @@ Appliances:
 - management appliances
 
 Does wireless need its own?  APs specifically?
-
 
 ### Structured Cabling
 

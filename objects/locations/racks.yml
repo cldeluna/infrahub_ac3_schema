@@ -1,0 +1,22 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: LocationRack
+  data:
+  # USA - DEN
+  - name: rack1
+    shortname: den1.s1r1
+    facility_id: EQX-DEN1-S1R1
+    parent: d1.1s1
+  # CZ - PRG
+  - name: rack1
+    shortname: prg2.r001
+    height: 47
+    facility_id: TTC-PRG2-S2R1
+    parent: prg2.s3
+  - name: rack2
+    shortname: prg2.r002
+    height: 47
+    facility_id: TTC-PRG2-S2R2
+    parent: prg2.s3

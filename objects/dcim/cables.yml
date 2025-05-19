@@ -1,0 +1,22 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: DcimCable
+  data:
+    - label: eth1.prg2-core1 <> eth1.prg2-core2
+      status: connected
+      cable_type: cat6a
+      color: blue
+      length: 150
+      connected_endpoints:
+        - [prg2-core1, Ethernet1]
+        - [prg2-core2, Ethernet1]
+    - label: eth2.prg2-core1 <> eth2.prg2-core2
+      status: connected
+      cable_type: cat6a
+      color: red
+      length: 150
+      connected_endpoints:
+        - [prg2-core1, Ethernet2]
+        - [prg2-core2, Ethernet2]

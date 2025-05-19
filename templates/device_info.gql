@@ -1,0 +1,72 @@
+query device_info($device: String!) {
+  DcimDevice(name__value: $device) {
+    edges {
+      node {
+        id
+        name {
+          value
+        }
+        primary_address {
+          node {
+            address {
+              value
+            }
+          }
+        }
+        location {
+          node {
+            id
+            name {
+              value
+            }
+          }
+        }
+        interfaces {
+          edges {
+            node {
+              __typename
+              id
+              name {
+                value
+              }
+              description {
+                value
+              }
+              role {
+                value
+              }
+              mtu {
+                value
+              }
+              ... on InterfaceLayer2 {
+                l2_mode {
+                  value
+                }
+              }
+              ... on InterfaceLayer3 {
+                ip_addresses {
+                  edges {
+                    node {
+                      ip_prefix {
+                        node {
+                          prefix {
+                            value
+                            broadcast_address
+                          }
+                        }
+                      }
+                      address {
+                        value
+                        ip
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

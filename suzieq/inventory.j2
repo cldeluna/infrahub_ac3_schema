@@ -1,0 +1,26 @@
+devices:
+  - name: devices-ignoring-known-hosts
+    ignore-known-hosts: true
+
+sources:
+  - name: ac3-devices
+    hosts:
+{% for device in data.DcimDevice.edges %}
+  {% for intf in device.node.interfaces.edges %}
+    {% if intf.node.role.value == "management" %}
+      {% set management_ip = intf.node.ip_addresses.edges[0].node.address.value.split('/') %}
+      - url: ssh://{{ management_ip[0] }}
+    {% endif %}
+  {% endfor %}
+{% endfor %}
+
+auths:
+  - name: logincreds
+    username: admin
+    password: admin
+
+namespaces:
+  - name: ac3
+    device: devices-ignoring-known-hosts
+    source: ac3-devices
+    auth: logincreds

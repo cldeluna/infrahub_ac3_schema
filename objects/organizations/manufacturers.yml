@@ -1,0 +1,10 @@
+---
+apiVersion: infrahub.app/v1
+kind: Object
+spec:
+  kind: OrganizationManufacturer
+  data:
+  - name: Nokia
+  - name: Arista
+  - name: Cisco
+  - name: Juniper

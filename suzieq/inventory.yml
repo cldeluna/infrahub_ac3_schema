@@ -1,0 +1,20 @@
+devices:
+  - name: devices-ignoring-known-hosts
+    ignore-known-hosts: true
+
+sources:
+  - name: ac3-devices
+    hosts:
+      - url: ssh://172.16.0.2
+      - url: ssh://172.16.0.3
+
+auths:
+  - name: logincreds
+    username: admin
+    password: admin
+
+namespaces:
+  - name: ac3
+    device: devices-ignoring-known-hosts
+    source: ac3-devices
+    auth: logincreds

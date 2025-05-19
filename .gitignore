@@ -14,3 +14,14 @@ schema-library
 .DS_Store
 .idea/
 *.png
+
+# SuzieQ
+parquet/
+
+# Containerlab
+clab-*
+*.clab.yml.bak
+generated-configs/**
+playbooks/documentation
+playbooks/intended
+playbooks/reports
