@@ -10,7 +10,7 @@ jinja2_transforms:
     template_path: "topology/clab_topology.j2"
 
   - name: "suzieq_inventory"
-    query: "device_info"
+    query: "devices"
     template_path: "suzieq/inventory.j2"
 
 artifact_definitions:
@@ -44,3 +44,6 @@ queries:
 
   - name: "device_info"
     file_path: "templates/device_info.gql"
+
+  - name: "devices"
+    file_path: "suzieq/devices.gql"
