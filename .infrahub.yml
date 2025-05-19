@@ -9,6 +9,10 @@ jinja2_transforms:
     query: "topology_info"
     template_path: "topology/clab_topology.j2"
 
+  - name: "suzieq_inventory"
+    query: "device_info"
+    template_path: "suzieq/inventory.j2"
+
 artifact_definitions:
   - name: "Startup Config for Arista devices"
     artifact_name: "startup-config"
@@ -25,6 +29,14 @@ artifact_definitions:
     content_type: "text/plain"
     targets: "arista"
     transformation: "clab_topology"
+
+  - name: "SuzieQ Inventory"
+    artifact_name: "suzieq-inventory"
+    parameters:
+      device: "name__value"
+    content_type: "text/plain"
+    targets: "arista"
+    transformation: "suzieq_inventory"
 
 queries:
   - name: "topology_info"
