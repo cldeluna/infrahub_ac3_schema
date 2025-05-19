@@ -16,6 +16,10 @@
 {%         endif %}
 {%      endif %}
 {%   endfor %}
+no aaa root
+!
+username admin role network-admin secret sha512 $6$9vVi9rcZBn0jSIXd$N7OHC5bbW2WWaXVo9XWF5ZxeqZn36pjei0tIVxxPXWJdoRK4WeO8f/tavdzNbZuRrb0OTx5OHQgan.HFD8nEr1
+!
 vlan internal order ascending range 1006 1199
 !
 transceiver qsfp default-mode 4x10G
@@ -29,10 +33,12 @@ spanning-tree mode mstp
 no spanning-tree vlan-id 4093-4094
 spanning-tree mst 0 priority 16384
 !
-no enable password
-no aaa root
+management api http-commands
+   no shutdown
+   !
+   vrf default
+      no shutdown
 !
-! Interface Configuration
 {%   for intf in data.DcimDevice.edges[0].node.interfaces.edges %}
 interface {{ intf.node.name.value }}
 {%      if intf.node.description.value %}
@@ -68,13 +74,6 @@ interface {{ intf.node.name.value }}
 ip routing
 !
 ip route 0.0.0.0/0 {{ ns.management_gw_ip }}
-!
-management api http-commands
-   protocol https
-   no shutdown
-   !
-   vrf default
-      no shutdown
 !
 end
 {% else %}

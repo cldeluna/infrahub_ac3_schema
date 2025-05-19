@@ -36,6 +36,7 @@ mutation AddRepository {
   }
 }
 ```
+
 ## Get device configs, containerlab topology, and suzieq inventory
 
 ```bash

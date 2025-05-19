@@ -5,8 +5,8 @@ devices:
 sources:
   - name: ac3-devices
     hosts:
-      - url: ssh://172.16.0.1
       - url: ssh://172.16.0.2
+      - url: ssh://172.16.0.3
 
 auths:
   - name: logincreds
