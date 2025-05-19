@@ -5,44 +5,44 @@ spec:
   kind: InterfacePhysical
   data:
     - name: Ethernet1
-      description: to-eth1-prg1-core2
+      description: to-eth1-prg2-core2
       mtu: 1500
       role: core
       status: active
-      device: prg1-core1
+      device: prg2-core1
       ip_addresses: ["10.0.0.0/31"]
     - name: Ethernet2
-      description: to-eth2-prg1-core2
+      description: to-eth2-prg2-core2
       mtu: 1500
       role: core
       status: active
-      device: prg1-core1
+      device: prg2-core1
       ip_addresses: ["10.0.0.2/31"]
     - name: Management0
       description: Mgmt Interface
       mtu: 1500
       role: management
       status: active
-      device: prg1-core1
+      device: prg2-core1
       ip_addresses: ["172.16.0.1/16"]
     - name: Ethernet1
-      description: to-eth1-prg1-core1
+      description: to-eth1-prg2-core1
       mtu: 1500
       role: core
       status: active
-      device: prg1-core2
+      device: prg2-core2
       ip_addresses: ["10.0.0.1/31"]
     - name: Ethernet2
-      description: to-eth2-prg1-core1
+      description: to-eth2-prg2-core1
       mtu: 1500
       role: core
       status: active
-      device: prg1-core2
+      device: prg2-core2
       ip_addresses: ["10.0.0.3/31"]
     - name: Management0
       description: Mgmt Interface
       mtu: 1500
       role: management
       status: active
-      device: prg1-core2
+      device: prg2-core2
       ip_addresses: ["172.16.0.2/16"]

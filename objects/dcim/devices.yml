@@ -4,7 +4,7 @@ kind: Object
 spec:
   kind: DcimDevice
   data:
-    - name: prg1-core1
+    - name: prg2-core1
       description: Core Router 1
       role: core
       status: active
@@ -16,7 +16,7 @@ spec:
       member_of_groups:
         - core
         - arista
-    - name: prg1-core2
+    - name: prg2-core2
       description: Core Router 2
       role: core
       status: active
@@ -28,7 +28,7 @@ spec:
       member_of_groups:
         - core
         - arista
-    # - name: prg1-core3
+    # - name: prg2-core3
     #   description: Core Router 3
     #   role: core
     #   status: provisioning

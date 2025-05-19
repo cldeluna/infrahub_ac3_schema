@@ -4,14 +4,21 @@ kind: Object
 spec:
   kind: IpamPrefix
   data:
+    - prefix: "10.0.0.0/16"
+      status: active
+      role: supernet
+      member_type: prefix
+      location: PRG2
     - prefix: "10.0.0.0/31"
-      description: eth1.prg1-core1 <-> eth1.prg1-core2
+      description: eth1.prg2-core1 <-> eth1.prg2-core2
       status: active
       role: technical
+      is_pool: true
     - prefix: "10.0.0.2/31"
-      description: eth2.prg1-core1 <-> eth2.prg1-core2
+      description: eth2.prg2-core1 <-> eth2.prg2-core2
       status: active
       role: technical
+      is_pool: true
     - prefix: "172.16.0.0/16"
       status: active
       role: management
