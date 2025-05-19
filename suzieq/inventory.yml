@@ -1,13 +1,12 @@
 devices:
-    - name: devices-ignoring-known-hosts
-      ignore-known-hosts: true
+  - name: devices-ignoring-known-hosts
+    ignore-known-hosts: true
 
 sources:
-    - name: test-devices
-      hosts:
-        - url: ssh://10.10.20.10
-        - url: ssh://10.10.20.11
-        - url: ssh://10.10.20.12
+  - name: ac3-devices
+    hosts:
+      - url: ssh://172.16.0.1
+      - url: ssh://172.16.0.2
 
 auths:
   - name: logincreds
@@ -15,7 +14,7 @@ auths:
     password: admin
 
 namespaces:
-  - name: testing
+  - name: ac3
     device: devices-ignoring-known-hosts
-    source: test-devices
+    source: ac3-devices
     auth: logincreds

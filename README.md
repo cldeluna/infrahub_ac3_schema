@@ -36,6 +36,15 @@ mutation AddRepository {
   }
 }
 ```
+## Get device configs, containerlab topology, and suzieq inventory
+
+```bash
+# Download all artifacts automatically to ./generated-configs/
+uv run python3 scripts/get_configs.py
+
+# Start the Containerlab
+sudo -E containerlab deploy -t ./generated-configs/clab/topology.clab.yml --reconfigure
+```
 
 ## Priority 2
 

@@ -12,7 +12,7 @@ spec:
       description: eth2.prg2-core1
     - address: "10.0.0.3/31"
       description: eth2.prg2-core2
-    - address: "172.16.0.1/16"
-      description: mgmt.prg2-core1
     - address: "172.16.0.2/16"
+      description: mgmt.prg2-core1
+    - address: "172.16.0.3/16"
       description: mgmt.prg2-core2
