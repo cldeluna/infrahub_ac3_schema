@@ -34,8 +34,8 @@ topology:
 {% set processed_endpoints = [] %}
 {% for device in data.DcimDevice.edges %}
   {% for interface in device.node.interfaces.edges %}
-    {% if interface.node.connector.node is not none %}
-      {% for link_device in interface.node.connector.node.connected_endpoints.edges %}
+    {% if interface.node.cable.node is not none %}
+      {% for link_device in interface.node.cable.node.connected_endpoints.edges %}
         {% if link_device is not none and link_device.node.hfid[0] != device.node.name.value %}
               {% set endpoint1 = device.node.name.value + ":" + interface.node.name.value %}
               {% set endpoint2 = link_device.node.hfid[0] + ":" +  link_device.node.hfid[1] %}
